@@ -8,9 +8,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import by.htp.shop.bean.Shop;
 import by.htp.shop.bean.SportEquipment;
 import by.htp.shop.dao.EquipmentDAO;
+import by.htp.shop.dao.ShopDAO;
 import by.htp.shop.dao.exception.DAOException;
 import by.htp.shop.dao.provider.ShopProvider;
 
@@ -18,7 +18,7 @@ public class EquipmentCommandsDAO implements EquipmentDAO {
 
 	public String init(String request) throws DAOException {
 		ShopProvider shopProvider = ShopProvider.getInstance();
-		Shop shop = shopProvider.getShop();
+		ShopDAO shop = shopProvider.getShopDAO();
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db;
 		try {
