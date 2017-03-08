@@ -4,8 +4,8 @@ import by.htp.shop.bean.Shop;
 import by.htp.shop.dao.ShopDAO;
 
 public final class ShopProvider {
-	public static final ShopProvider instance = new ShopProvider();
-	public static ShopDAO shopDAO = new Shop();
+	private static final ShopProvider instance = new ShopProvider();
+	private static ShopDAO shopDAO = new Shop();
 
 	public static ShopProvider getInstance() {
 		return instance;

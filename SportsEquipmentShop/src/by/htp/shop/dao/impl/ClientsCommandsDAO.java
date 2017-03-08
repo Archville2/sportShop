@@ -2,23 +2,24 @@ package by.htp.shop.dao.impl;
 
 import java.util.regex.Pattern;
 
-import by.htp.shop.bean.User;
-import by.htp.shop.bean.UsersList;
+import by.htp.shop.bean.Client;
 import by.htp.shop.dao.ClientsDAO;
+import by.htp.shop.dao.ClientsListDAO;
 import by.htp.shop.dao.exception.DAOException;
+import by.htp.shop.dao.provider.ClientProvider;
 
 public class ClientsCommandsDAO implements ClientsDAO {
-	static final UsersList usersList = new UsersList();
-
+	ClientProvider clientProvider = ClientProvider.getInstance();
+	ClientsListDAO clientsList = clientProvider.getClientsListDAO();
+	
 	@Override
 	public String regUser(String request) throws DAOException {
-
 		Pattern pattern = Pattern.compile("\\s+");
 		String[] words = pattern.split(request);
 
-		User user = new User(words[0], words[1], words[2]);
+		Client client = new Client(words[0], words[1], words[2]);
 
-		usersList.addClient(user);
+		clientsList.addClient(client);
 
 		return "User added";
 	}
@@ -28,9 +29,10 @@ public class ClientsCommandsDAO implements ClientsDAO {
 
 		String result = String.format("%-15s %-15s %-15s\n", "Name", "Surname", "Phone");
 
-		for (int i = 0; i < usersList.getUserListSize(); i++) {
-			User user = usersList.getClient(i);
-			result = result.concat(String.format("%-15s %-15s %-15s\n", user.getName(), user.getSurname(), user.getPhone()));
+		for (int i = 0; i < clientsList.getClientListSize(); i++) {
+			Client client = clientsList.getClient(i);
+			result = result.concat(
+					String.format("%-15s %-15s %-15s\n", client.getName(), client.getSurname(), client.getPhone()));
 		}
 
 		return result;
