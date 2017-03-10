@@ -6,6 +6,7 @@ import by.htp.shop.controller.command.Command;
 import by.htp.shop.controller.command.CommandName;
 import by.htp.shop.controller.command.impl.Init;
 import by.htp.shop.controller.command.impl.PrintClients;
+import by.htp.shop.controller.command.impl.PrintItems;
 import by.htp.shop.controller.command.impl.RegUser;
 import by.htp.shop.controller.exception.ControllerException;
 
@@ -18,6 +19,7 @@ final class CommandProvider {
 		repository.put(CommandName.REG_USER, new RegUser());
 		repository.put(CommandName.PRINT_CLIENTS, new PrintClients());
 		repository.put(CommandName.INIT, new Init());
+		repository.put(CommandName.PRINT_ITEMS, new PrintItems());
 	}
 
 	Command getCommand(String name) throws ControllerException {

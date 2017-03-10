@@ -11,8 +11,6 @@ public class PrintClientsService {
 		DAOFactory daoObjectFactory = DAOFactory.getInstance();
 		ClientsDAO clientsDAO = daoObjectFactory.getClientsDAO();
 
-		String result;
-
 		try {
 			return clientsDAO.printClients();
 		} catch (DAOException e) {

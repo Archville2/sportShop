@@ -1,8 +1,5 @@
 package by.htp.shop.dao.impl;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.xerces.parsers.DOMParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,12 +16,8 @@ public class EquipmentCommandsDAO implements EquipmentDAO {
 	public String init(String request) throws DAOException {
 		ShopProvider shopProvider = ShopProvider.getInstance();
 		ShopDAO shop = shopProvider.getShopDAO();
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db;
-		try {
-			db = dbf.newDocumentBuilder();
 
-			Document document1 = db.parse("resources/items.xml");
+		try {
 
 			DOMParser parser = new DOMParser();
 			parser.parse("resources/items.xml");
@@ -33,10 +26,6 @@ public class EquipmentCommandsDAO implements EquipmentDAO {
 			Element root = document.getDocumentElement();
 
 			NodeList itemNodes = root.getElementsByTagName("item");
-			NodeList list = root.getChildNodes();
-
-			Element el1 = (Element) list.item(1);
-			String str = el1.getTagName();
 
 			SportEquipment sportEquipment = null;
 			for (int i = 0; i < itemNodes.getLength(); i++) {
@@ -66,6 +55,20 @@ public class EquipmentCommandsDAO implements EquipmentDAO {
 		NodeList nlist = element.getElementsByTagName(childName);
 		Element child = (Element) nlist.item(0);
 		return child;
+	}
+
+	public String getEquipmentList(String request) throws DAOException {
+		ShopProvider shopProvider = ShopProvider.getInstance();
+		ShopDAO shop = shopProvider.getShopDAO();
+		String result = "";
+
+		for (int i = 0; i < shop.getShopSize(); i++) {
+			result = result.concat(
+					String.format("%-5d %-15s %-15s %-20s %s\n", shop.getItem(i).getId(), shop.getItem(i).getCategory(),
+							shop.getItem(i).getType(), shop.getItem(i).getName(), shop.getItem(i).getPrice()));
+
+		}
+		return result;
 	}
 
 }

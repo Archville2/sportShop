@@ -2,6 +2,7 @@ package by.htp.shop.service.factory;
 
 import by.htp.shop.service.impl.InitService;
 import by.htp.shop.service.impl.PrintClientsService;
+import by.htp.shop.service.impl.PrintItemsService;
 import by.htp.shop.service.impl.RegUserService;
 
 public final class ServiceFactory {
@@ -10,6 +11,7 @@ public final class ServiceFactory {
 	private final RegUserService regUserService = new RegUserService();
 	private final PrintClientsService printClientsService = new PrintClientsService();
 	private final InitService initService = new InitService();
+	private final PrintItemsService printItemsService = new PrintItemsService();
 
 	private ServiceFactory() {
 	}
@@ -28,5 +30,9 @@ public final class ServiceFactory {
 	
 	public InitService getInitService() {
 		return initService;
+	}
+	
+	public PrintItemsService getPrintItemsService() {
+		return printItemsService;
 	}
 }

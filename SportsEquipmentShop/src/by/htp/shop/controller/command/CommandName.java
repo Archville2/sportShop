@@ -18,6 +18,15 @@ public enum CommandName {
 			return USAGE;
 		}
 	},
+	
+	PRINT_ITEMS {
+		public final String USAGE = "[]";
+
+		@Override
+		public String getUsage() {
+			return USAGE;
+		}
+	},
 
 	INIT {
 		public final String USAGE = "[]";
